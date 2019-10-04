@@ -22,7 +22,7 @@
 #include <math.h>
 #include "fmm.h"
 
-void update_postition(const double *potential, const double *field, 
+void update_position(const double *potential, const double *field, 
                       Real_t *sources, Real_t *charges) {
   // implement your favorite time-marching scheme
 }
@@ -89,7 +89,7 @@ int main(int argc, char *argv[]) {
                 potential, field); 
 
     // update particle position
-    update_postition(potential, field, sources, charges); 
+    update_position(potential, field, sources, charges); 
   }
 
   // destruct the final DAG
