@@ -1,0 +1,4 @@
+option('tbb_dir',
+       type : 'string',
+       value : '',
+       description : 'Absolute path to Intel TBB installation directory')
