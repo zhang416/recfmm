@@ -1,3 +1,9 @@
+option('cilktool',
+       type : 'combo',
+       choices : ['', 'none', 'cilksan', 'cilkscale'],
+       value : '',
+       description : 'OpenCilk instrumentation tool')
+
 option('tbb_dir',
        type : 'string',
        value : '',

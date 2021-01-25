@@ -88,6 +88,25 @@ endif
 
 recfmm_dep = [tbbmalloc_dep, m_dep]
 
+# ========== instrumentation tools
+
+if get_option('cilktool') == 'cilksan' # ----- Cilksan
+  if not (use_opencilk and have_cilk_headers)
+    warning('Cilksan instrumentation specified but not using OpenCilk compiler;' +
+            ' skipping...')
+  else
+    add_project_arguments(['-fsanitize=cilk','-fno-stripmine',
+                           '-fno-vectorize','-fno-unroll-loops'], language : 'c')
+    add_project_link_arguments(['-fsanitize=cilk'], language : 'c')
+    # FIXME [2021-01-25] Meson does not support static-library-only arguments to
+    # build targets defined via `library()`.  See also:
+    # https://github.com/mesonbuild/meson/issues/3304
+    if get_option('default_library') != 'static'
+      add_project_link_arguments(['-shared-libasan'], language : 'c')
+    endif
+  endif
+endif
+
 # ========== build targets
 
 # headers
