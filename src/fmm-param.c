@@ -884,7 +884,7 @@ void yhfstrtn(int p, double theta, const double *sqc, double *d, int pgsz) {
   for (int ij = 0; ij <= p; ij++) {
     for (int im = 0; im <= ij; im++) {
       for (int imp = -ij; imp <= ij; imp++) {
-        int impabs = fabs(imp);
+        int impabs = abs(imp);
         d[ij + im * (p + 1) + (imp + p) * pgsz] *=
           sqrt(fac[ij + im] / fac[ij + impabs] * 
                fac[ij - impabs] / fac[ij - im]);
@@ -1344,7 +1344,7 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
     u2 = scal * scal;
     n = nb;
     for (i = 2; i <= n; ++i) {
-      if ((d__1 = by[i - 1], abs(d__1)) * u1 >= 
+      if ((d__1 = by[i - 1], fabs(d__1)) * u1 >= 
           xinf / (double) ((i << 1) - 1)) {
         break;  // goto L450;
       }

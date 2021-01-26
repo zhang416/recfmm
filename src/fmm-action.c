@@ -157,9 +157,9 @@ void disaggregate(fmm_box_t *tbox) {
     for (int j = 0; j < 8; j++) {
       fmm_box_t *cbox = sbox->child[j]; 
       if (cbox != NULL) {
-        if (fabs(tbox->idx - cbox->idx) <= 1 &&
-            fabs(tbox->idy - cbox->idy) <= 1 &&
-            fabs(tbox->idz - cbox->idz) <= 1) 
+        if (abs(tbox->idx - cbox->idx) <= 1 &&
+            abs(tbox->idy - cbox->idy) <= 1 &&
+            abs(tbox->idz - cbox->idz) <= 1) 
           list5[nlist5++] = cbox;
       }
     }
