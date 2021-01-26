@@ -1179,9 +1179,9 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   
   /* Initialized data */
   
-  static double xmin = 4.46e-308;
-  static double xinf = 1.79e308;
-  static double xlarge = 1e8;
+  static const double xmin = 4.46e-308;
+  static const double xinf = 1.79e308;
+  static const double xlarge = 1e8;
   
   /* System generated locals */
   int n;
@@ -1191,8 +1191,10 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   double atan(double), exp(double);
   
   /* Local variables */
-  static int i;
-  static double p, u1, u2, ex, zero, halfpi;
+  int i;
+  double p, u1, u2, ex;
+  static const double zero = 0.0;
+  static const double halfpi = 1.57079632679; // atan(1.) * 2.;
 
   /* ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccd */
   
@@ -1328,7 +1330,6 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   /*  machine-dependent constants */
   /* ---------------------------------------------------------------------- */
   /* ---------------------------------------------------------------------- */
-  halfpi = 1.57079632679; // atan(1.) * 2.;
   ex = x;
   if (nb >= 0 && x >= xmin && ex < xlarge) {
     
