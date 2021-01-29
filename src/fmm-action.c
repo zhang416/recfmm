@@ -570,10 +570,10 @@ void source_to_multipole(fmm_box_t *sbox) {
 }
 
 void multipole_to_multipole(fmm_box_t *sbox) {
-  const double complex var[5] =
+  static const double complex var[5] =
     {1,-1 + _Complex_I, 1 + _Complex_I, 1 - _Complex_I, -1 - _Complex_I};
-  const double arg = sqrt(2)/2.0;
-  const int iflu[8] = {3, 4, 2, 1, 3, 4, 2, 1};
+  static const double arg = 1.4142135623730950488016887242097 / 2.0; /* sqrt(2)/2 */
+  static const int iflu[8] = {3, 4, 2, 1, 3, 4, 2, 1};
 
   int pterms = fmm_param->pterms;
   int pgsz   = fmm_param->pgsz;
@@ -2194,10 +2194,10 @@ void exponential_to_local_p2(int iexpu, const double complex *mexpu,
 }
 
 void local_to_local(fmm_box_t *tbox) {
-  const double complex var[5] =
+  static const double complex var[5] =
     {1, 1 - _Complex_I, -1 - _Complex_I, -1 + _Complex_I, 1 + _Complex_I};
-  const double arg = sqrt(2) / 2.0;
-  const int ifld[8] = {1, 2, 4, 3, 1, 2, 4, 3};
+  static const double arg = 1.4142135623730950488016887242097 / 2.0; /* sqrt(2)/2 */
+  static const int ifld[8] = {1, 2, 4, 3, 1, 2, 4, 3};
 
   int pterms = fmm_param->pterms;
   int pgsz   = fmm_param->pgsz;
@@ -2752,10 +2752,10 @@ void source_to_multipole(fmm_box_t *sbox) {
 }
 
 void multipole_to_multipole(fmm_box_t *sbox) {
-  const double complex var[5] = 
+  static const double complex var[5] =
     {0, -1 + _Complex_I, 1 + _Complex_I, 1 - _Complex_I, -1 - _Complex_I};
-  const double arg = sqrt(2.0) / 2.0;
-  const int yifl[8] = {3, 4, 2, 1, 3, 4, 2, 1}; 
+  static const double arg = 1.4142135623730950488016887242097 / 2.0; /* sqrt(2)/2 */
+  static const int yifl[8] = {3, 4, 2, 1, 3, 4, 2, 1};
 
   int level  = sbox->level; 
   int pterms = fmm_param->pterms;
@@ -4330,10 +4330,10 @@ void exponential_to_local_p2(int iexpu, const double complex *mexpu,
 }
 
 void local_to_local(fmm_box_t *tbox) {
-  const double complex var[5] = 
+  static const double complex var[5] =
     {0, 1 - _Complex_I, -1 - _Complex_I, -1 + _Complex_I, 1 + _Complex_I};
-  const double arg = sqrt(2.0) / 2.0;
-  const int yifl[8] = {3, 4, 2, 1, 3, 4, 2, 1}; 
+  static const double arg = 1.4142135623730950488016887242097 / 2.0; /* sqrt(2)/2 */
+  static const int yifl[8] = {3, 4, 2, 1, 3, 4, 2, 1};
 
   int level  = tbox->level; 
   int pterms = fmm_param->pterms;
