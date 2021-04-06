@@ -884,7 +884,7 @@ void yhfstrtn(int p, double theta, const double *sqc, double *d, int pgsz) {
   for (int ij = 0; ij <= p; ij++) {
     for (int im = 0; im <= ij; im++) {
       for (int imp = -ij; imp <= ij; imp++) {
-        int impabs = fabs(imp);
+        int impabs = abs(imp);
         d[ij + im * (p + 1) + (imp + p) * pgsz] *=
           sqrt(fac[ij + im] / fac[ij + impabs] * 
                fac[ij - impabs] / fac[ij - im]);
@@ -1179,9 +1179,9 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   
   /* Initialized data */
   
-  static double xmin = 4.46e-308;
-  static double xinf = 1.79e308;
-  static double xlarge = 1e8;
+  static const double xmin = 4.46e-308;
+  static const double xinf = 1.79e308;
+  static const double xlarge = 1e8;
   
   /* System generated locals */
   int n;
@@ -1191,8 +1191,10 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   double atan(double), exp(double);
   
   /* Local variables */
-  static int i;
-  static double p, u1, u2, ex, zero, halfpi;
+  int i;
+  double p, u1, u2, ex;
+  static const double zero = 0.0;
+  static const double halfpi = 1.57079632679; // atan(1.) * 2.;
 
   /* ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccd */
   
@@ -1328,7 +1330,6 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
   /*  machine-dependent constants */
   /* ---------------------------------------------------------------------- */
   /* ---------------------------------------------------------------------- */
-  halfpi = 1.57079632679; // atan(1.) * 2.;
   ex = x;
   if (nb >= 0 && x >= xmin && ex < xlarge) {
     
@@ -1343,7 +1344,7 @@ void kn(double scal, double x, int nb, double *by, int *ncalc) {
     u2 = scal * scal;
     n = nb;
     for (i = 2; i <= n; ++i) {
-      if ((d__1 = by[i - 1], abs(d__1)) * u1 >= 
+      if ((d__1 = by[i - 1], fabs(d__1)) * u1 >= 
           xinf / (double) ((i << 1) - 1)) {
         break;  // goto L450;
       }
